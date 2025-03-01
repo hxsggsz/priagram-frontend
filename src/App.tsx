@@ -11,6 +11,7 @@ import "@xyflow/react/dist/style.css";
 import { initialNodes, nodeTypes } from "./nodes";
 import { initialEdges, edgeTypes } from "./edges";
 import css from "./styles/app.module.css";
+import { PrismaEditor } from "./components/editor";
 
 export default function App() {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
@@ -18,7 +19,7 @@ export default function App() {
 
   return (
     <div className={css.wrapper}>
-      <div>teste</div>
+      <PrismaEditor />
 
       <ReactFlow
         nodes={nodes}

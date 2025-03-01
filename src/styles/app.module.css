@@ -1,10 +1,10 @@
 .wrapper {
-  border: 1px solid red;
   display: grid;
+  overflow: hidden;
   padding: 20px;
-  grid-template-columns: 40% 40%;
-  justify-content: space-between; /* Espaço entre as colunas */
-  gap: 20px; /* Espaçamento opcional entre elementos */
+  grid-template-columns: 50% 50%;
+  justify-content: space-between;
+  gap: 20px;
   width: calc(100vw - 50px);
   height: calc(100vh - 50px);
 }
