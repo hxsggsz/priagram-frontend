@@ -56,6 +56,7 @@ export function PrismaNodeDiagram({
           position={Position.Right}
           id={`${id}-source`}
           isConnectable={isConnectable}
+          content=">"
         />
       )}
     </div>

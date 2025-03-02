@@ -5,7 +5,7 @@ import {
   useEdgesState,
   Edge,
   addEdge,
-  Connection,
+  OnConnect,
 } from "@xyflow/react";
 
 import "@xyflow/react/dist/style.css";
@@ -17,15 +17,16 @@ import { PrismaEditor } from "./components/editor";
 import { useDiagramStore } from "./stores/useDiagramStore";
 import { useCallback, useEffect } from "react";
 import { AppNode } from "./nodes/types";
+import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 
 export default function App() {
   const { diagram } = useDiagramStore();
+
   const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
 
-  const onConnect = useCallback(
-    (params: Connection) =>
-      setEdges((eds) => addEdge({ ...params, animated: true }, eds)),
+  const onConnect: OnConnect = useCallback(
+    (params) => setEdges((eds) => addEdge({ ...params, animated: true }, eds)),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
@@ -58,21 +59,26 @@ export default function App() {
   }, [diagram, diagram?.relations, setEdges]);
 
   return (
-    <div className={css.wrapper}>
-      <PrismaEditor />
+    <PanelGroup className={css.wrapper} direction="horizontal">
+      <Panel collapsible minSize={25} order={1}>
+        <PrismaEditor />
+      </Panel>
+      <PanelResizeHandle style={{ width: "1px", background: "#1e1e1e" }} />
 
-      <ReactFlow
-        nodes={nodes}
-        nodeTypes={nodeTypes}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        edges={edges}
-        edgeTypes={edgeTypes}
-        onConnect={onConnect}
-        fitView
-      >
-        <Background />
-      </ReactFlow>
-    </div>
+      <Panel collapsible minSize={25} order={2}>
+        <ReactFlow
+          nodes={nodes}
+          nodeTypes={nodeTypes}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          edges={edges}
+          edgeTypes={edgeTypes}
+          onConnect={onConnect}
+          fitView
+        >
+          <Background />
+        </ReactFlow>
+      </Panel>
+    </PanelGroup>
   );
 }
