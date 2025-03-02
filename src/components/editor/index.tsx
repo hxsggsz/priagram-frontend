@@ -1,16 +1,16 @@
 import { Editor, useMonaco } from "@monaco-editor/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { config, language } from "./prisma-language";
 import css from "./editor.module.css";
-import { useDebouncedCallback } from "../../hooks/useDebounce";
+import { useDebouncedCallback } from "@/hooks/useDebounce";
+import { useDiagramStore } from "@/stores/useDiagramStore";
 
 export const PrismaEditor = () => {
-  const [editorValue, setEditorValue] = useState("");
+  const { fetch } = useDiagramStore();
 
   const handleChange = useDebouncedCallback((value: string | undefined) => {
     if (!value) return;
-    setEditorValue(value);
-    console.log(`[${new Date().toISOString()}]: index.tsx`, value);
+    fetch(value);
   }, 500);
 
   const monaco = useMonaco();
@@ -33,7 +33,6 @@ export const PrismaEditor = () => {
         theme="vs"
         loading="Loading..."
         path="prisma"
-        value={editorValue}
         onChange={handleChange}
         options={{
           minimap: { enabled: false },

@@ -7,11 +7,12 @@ interface AuthStoreTypes {
   fetch: (editorValue: string) => Promise<void>;
 }
 
-export const useAuthStore = create<AuthStoreTypes>()((set) => ({
+export const useDiagramStore = create<AuthStoreTypes>()((set) => ({
   diagram: [],
 
   fetch: async (editorValue: string): Promise<void> => {
     const diagram = await DiagramService.getDiagram(editorValue);
+    console.log(`[${new Date().toISOString()}]: index.ts`, diagram);
     set({ diagram });
   },
 }));
