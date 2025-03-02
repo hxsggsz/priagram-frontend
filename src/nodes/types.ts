@@ -1,4 +1,5 @@
-import type { Node, BuiltInNode } from '@xyflow/react';
+import { PrismaNode } from "@/types/diagram";
+import type { Node, BuiltInNode } from "@xyflow/react";
 
-export type PositionLoggerNode = Node<{ label: string }, 'position-logger'>;
-export type AppNode = BuiltInNode | PositionLoggerNode;
+export type PositionLoggerNode = Node<{ label: string }, "position-logger">;
+export type AppNode = BuiltInNode | PositionLoggerNode | PrismaNode;

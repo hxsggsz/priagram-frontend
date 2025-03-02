@@ -2,6 +2,7 @@ import type { NodeTypes } from "@xyflow/react";
 
 import { PositionLoggerNode } from "./PositionLoggerNode";
 import { AppNode } from "./types";
+import { PrismaNodeDiagram } from "./PrismaNode";
 
 export const initialNodes: AppNode[] = [
   {
@@ -27,5 +28,6 @@ export const initialNodes: AppNode[] = [
 
 export const nodeTypes = {
   "position-logger": PositionLoggerNode,
+  "prisma-table": PrismaNodeDiagram,
   // Add any of your custom nodes here!
 } satisfies NodeTypes;
