@@ -6,8 +6,11 @@ import { useDebouncedCallback } from "@/hooks/useDebounce";
 import { useDiagramStore } from "@/stores/useDiagramStore";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { editor } from "monaco-editor";
+import { useTheme } from "@/hooks/useTheme";
 
 export const PrismaEditor = () => {
+  const { theme } = useTheme();
+
   const { fetch } = useDiagramStore();
 
   const [editorValue, setEditorValue] = useLocalStorage("@editor", "");
@@ -51,9 +54,7 @@ export const PrismaEditor = () => {
       <Editor
         key="prisma"
         language="prisma"
-        // TODO: add dark theme
-        // theme={resolvedTheme === "dark" ? "vs-dark" : "vs"}
-        theme="vs"
+        theme={theme === "dark" ? "vs-dark" : "vs"}
         loading="Loading..."
         path="prisma"
         defaultLanguage="prisma"
