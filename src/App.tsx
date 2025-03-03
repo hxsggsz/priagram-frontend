@@ -18,6 +18,9 @@ import { useCallback, useEffect } from "react";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { AppNode, nodeTypes } from "./types/diagram";
 import "@/styles/variables.css";
+import { Header } from "./components/header";
+import { Button } from "./components/button";
+import { Switch } from "./components/switch";
 
 export default function App() {
   const { diagram } = useDiagramStore();
@@ -59,26 +62,34 @@ export default function App() {
   }, [diagram, diagram?.relations, setEdges]);
 
   return (
-    <PanelGroup className={css.wrapper} direction="horizontal">
-      <Panel collapsible minSize={25} order={1}>
-        <PrismaEditor />
-      </Panel>
-      <PanelResizeHandle style={{ width: "1px", background: "#1e1e1e" }} />
+    <>
+      <Header />
 
-      <Panel collapsible minSize={25} order={2}>
-        <ReactFlow
-          nodes={nodes}
-          nodeTypes={nodeTypes}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          edges={edges}
-          edgeTypes={edgeTypes}
-          onConnect={onConnect}
-          fitView
-        >
-          <Background />
-        </ReactFlow>
-      </Panel>
-    </PanelGroup>
+      <PanelGroup className={css.wrapper} direction="horizontal">
+        <Panel collapsible minSize={25} order={1}>
+          <PrismaEditor />
+        </Panel>
+        <PanelResizeHandle style={{ width: "1px", background: "#1e1e1e" }} />
+
+        <Panel collapsible minSize={25} order={2}>
+          <ReactFlow
+            nodes={nodes}
+            nodeTypes={nodeTypes}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            edges={edges}
+            edgeTypes={edgeTypes}
+            onConnect={onConnect}
+            fitView
+          >
+            <header className={css.menuWrapper}>
+              <Button>test</Button>
+              <Switch />
+            </header>
+            <Background />
+          </ReactFlow>
+        </Panel>
+      </PanelGroup>
+    </>
   );
 }
