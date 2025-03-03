@@ -1,15 +1,18 @@
 :root {
   --main-backgroud: rgb(255, 255, 254);
   --text: rgb(0, 0, 0);
+  --sub-text: rgba(121, 121, 121, 0.9);
   --main-color: #008080;
-  --foreground: rgb(128, 128, 128);
+  --main-darker: #005959;
+  --foreground: rgb(229, 231, 235);
 
   --rounded-sm: 0.4rem;
+  --rounded-xl: 1rem;
 }
 
 [data-theme="dark"] {
   --main-backgroud: rgb(30, 30, 30);
   --text: rgb(212, 212, 212);
   --main-color: rgb(61, 201, 176);
-  --foreground: rgba(121, 121, 121, 0.4);
+  --main-darker: #2a8c7b;
 }

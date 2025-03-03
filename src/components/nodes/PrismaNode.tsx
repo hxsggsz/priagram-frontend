@@ -40,7 +40,7 @@ export function PrismaNodeDiagram({
 
   const renderNodeColumns = () =>
     data.modelContent.map((mc) => (
-      <li className={css.listItem}>
+      <li key={mc.id} className={css.listItem}>
         <p>{mc.name}</p>
         <p>{mc.type}</p>
       </li>

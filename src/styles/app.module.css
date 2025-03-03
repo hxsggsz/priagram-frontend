@@ -7,3 +7,10 @@
   border: none;
   height: 100vh;
 }
+
+.menuWrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0.2rem 0.8rem;
+}

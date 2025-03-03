@@ -3,20 +3,25 @@
 .wrapper {
   background: var(--main-backgroud);
   border: 1px solid var(--foreground);
-  border-radius: var(--rounded-sm);
+  border-radius: var(--rounded-xl);
   color: var(--text);
   text-transform: capitalize;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header {
   padding: 0.2rem 0.4rem;
-  background: var(--main-color);
-  color: #ffff;
+  border-top-right-radius: var(--rounded-xl);
+  border-top-left-radius: var(--rounded-xl);
+  background: var(--main-backgroud);
+  border-bottom: 1px solid var(--foreground);
+  font-weight: 700;
 }
 
 .listItem {
   padding: 0.2rem 0.4rem;
   display: flex;
+  color: var(--sub-text);
   justify-content: space-between;
   gap: 0.6rem;
 }
