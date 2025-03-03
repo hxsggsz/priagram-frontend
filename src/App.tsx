@@ -50,6 +50,8 @@ export default function App() {
       };
     });
 
+    console.log(newNodes, diagram.data);
+    // setDiagram(newNodes[0]);
     setNodes(newNodes);
   }, [diagram, diagram?.data, nodes, setNodes]);
 

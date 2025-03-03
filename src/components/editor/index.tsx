@@ -1,19 +1,44 @@
-import { Editor, useMonaco } from "@monaco-editor/react";
-import { useEffect } from "react";
+import { Editor, OnMount, useMonaco } from "@monaco-editor/react";
+import { useEffect, useRef } from "react";
 import { config, language } from "./prisma-language";
 import css from "./editor.module.css";
 import { useDebouncedCallback } from "@/hooks/useDebounce";
 import { useDiagramStore } from "@/stores/useDiagramStore";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { editor } from "monaco-editor";
 
 export const PrismaEditor = () => {
   const { fetch } = useDiagramStore();
 
-  const handleChange = useDebouncedCallback((value: string | undefined) => {
-    if (!value) return;
-    fetch(value);
-  }, 500);
+  const [editorValue, setEditorValue] = useLocalStorage("@editor", "");
 
   const monaco = useMonaco();
+
+  const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
+
+  const handleChange = useDebouncedCallback(
+    async (value: string | undefined) => {
+      if (!value) return;
+      setEditorValue(value);
+      fetch(value);
+    },
+    500
+  );
+
+  const handleEditorDidMount: OnMount = (editor) => {
+    editorRef.current = editor;
+    setTimeout(() => {
+      editor.setValue(editor.getValue());
+      editor.layout();
+    }, 100);
+  };
+
+  useEffect(() => {
+    if (monaco && editorRef.current) {
+      const model = editorRef.current.getModel();
+      model?.setValue(model.getValue());
+    }
+  }, [monaco]);
 
   useEffect(() => {
     if (monaco) {
@@ -33,12 +58,17 @@ export const PrismaEditor = () => {
         theme="vs"
         loading="Loading..."
         path="prisma"
+        defaultLanguage="prisma"
+        value={editorValue}
         onChange={handleChange}
+        onMount={handleEditorDidMount}
         options={{
           minimap: { enabled: false },
           smoothScrolling: true,
           cursorSmoothCaretAnimation: "on",
           scrollBeyondLastLine: true,
+          autoClosingBrackets: "always",
+          autoClosingQuotes: "always",
         }}
       />
     </div>
