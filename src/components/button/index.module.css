@@ -3,7 +3,8 @@
 .button {
   position: relative;
   padding: 1rem 1.2rem;
-  background: var(--main-background);
+  background: var(--main-node);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--foreground);
   border-radius: var(--rounded-xl);
   color: var(--text);

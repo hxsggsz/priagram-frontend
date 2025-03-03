@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",
+    "@phosphor-icons/react": "^2.1.7",
     "@xyflow/react": "^12.3.6",
     "axios": "^1.8.1",
     "monaco-editor": "^0.52.2",

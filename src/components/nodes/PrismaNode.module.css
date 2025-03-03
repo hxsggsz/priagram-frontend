@@ -1,7 +1,7 @@
 @import url("../../styles/variables.css");
 
 .wrapper {
-  background: var(--main-backgroud);
+  background: var(--main-node);
   border: 1px solid var(--foreground);
   border-radius: var(--rounded-xl);
   color: var(--text);
@@ -13,7 +13,7 @@
   padding: 0.2rem 0.4rem;
   border-top-right-radius: var(--rounded-xl);
   border-top-left-radius: var(--rounded-xl);
-  background: var(--main-backgroud);
+  background: var(--main-node);
   border-bottom: 1px solid var(--foreground);
   font-weight: 700;
 }

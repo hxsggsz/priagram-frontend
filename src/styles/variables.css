@@ -1,5 +1,6 @@
 :root {
   --main-backgroud: rgb(255, 255, 254);
+  --main-node: rgb(255, 255, 254);
   --text: rgb(0, 0, 0);
   --sub-text: rgba(121, 121, 121, 0.9);
   --main-color: #008080;
@@ -12,6 +13,8 @@
 
 [data-theme="dark"] {
   --main-backgroud: rgb(30, 30, 30);
+  --main-node: rgb(15, 23, 42);
+  --sub-text: rgba(255, 255, 254);
   --text: rgb(212, 212, 212);
   --main-color: rgb(61, 201, 176);
   --main-darker: #2a8c7b;

@@ -3,6 +3,7 @@ import {
   Background,
   useNodesState,
   useEdgesState,
+  Panel as FlowPanel,
   Edge,
   addEdge,
   OnConnect,
@@ -18,12 +19,14 @@ import { useCallback, useEffect } from "react";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { AppNode, nodeTypes } from "./types/diagram";
 import "@/styles/variables.css";
-import { Header } from "./components/header";
 import { Button } from "./components/button";
-import { Switch } from "./components/switch";
+import { useTheme } from "./hooks/useTheme";
+import { Sun, Moon } from "@phosphor-icons/react";
 
 export default function App() {
   const { diagram } = useDiagramStore();
+
+  const { theme, toggleTheme } = useTheme();
 
   const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
@@ -62,34 +65,37 @@ export default function App() {
   }, [diagram, diagram?.relations, setEdges]);
 
   return (
-    <>
-      <Header />
+    <PanelGroup className={css.wrapper} direction="horizontal">
+      <Panel collapsible minSize={25} order={1}>
+        <PrismaEditor />
+      </Panel>
+      <PanelResizeHandle style={{ width: "1px", background: "#1e1e1e" }} />
 
-      <PanelGroup className={css.wrapper} direction="horizontal">
-        <Panel collapsible minSize={25} order={1}>
-          <PrismaEditor />
-        </Panel>
-        <PanelResizeHandle style={{ width: "1px", background: "#1e1e1e" }} />
+      <Panel collapsible minSize={25} order={2}>
+        <ReactFlow
+          nodes={nodes}
+          nodeTypes={nodeTypes}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          edges={edges}
+          edgeTypes={edgeTypes}
+          onConnect={onConnect}
+          fitView
+        >
+          <FlowPanel className={css.menuWrapper} position="top-right">
+            <Button>Download Diagram</Button>
 
-        <Panel collapsible minSize={25} order={2}>
-          <ReactFlow
-            nodes={nodes}
-            nodeTypes={nodeTypes}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            edges={edges}
-            edgeTypes={edgeTypes}
-            onConnect={onConnect}
-            fitView
-          >
-            <header className={css.menuWrapper}>
-              <Button>test</Button>
-              <Switch />
-            </header>
-            <Background />
-          </ReactFlow>
-        </Panel>
-      </PanelGroup>
-    </>
+            <Button onClick={() => toggleTheme()}>
+              {theme === "light" ? (
+                <Sun size={20} weight="fill" />
+              ) : (
+                <Moon size={20} weight="fill" />
+              )}
+            </Button>
+          </FlowPanel>
+          <Background />
+        </ReactFlow>
+      </Panel>
+    </PanelGroup>
   );
 }
