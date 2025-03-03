@@ -10,14 +10,14 @@ import {
 
 import "@xyflow/react/dist/style.css";
 
-import { nodeTypes } from "./nodes";
 import { edgeTypes } from "./edges";
 import css from "./styles/app.module.css";
 import { PrismaEditor } from "./components/editor";
 import { useDiagramStore } from "./stores/useDiagramStore";
 import { useCallback, useEffect } from "react";
-import { AppNode } from "./nodes/types";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import { AppNode, nodeTypes } from "./types/diagram";
+import "@/styles/variables.css";
 
 export default function App() {
   const { diagram } = useDiagramStore();
@@ -50,8 +50,6 @@ export default function App() {
       };
     });
 
-    console.log(newNodes, diagram.data);
-    // setDiagram(newNodes[0]);
     setNodes(newNodes);
   }, [diagram, diagram?.data, nodes, setNodes]);
 

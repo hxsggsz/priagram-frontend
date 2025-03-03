@@ -30,21 +30,19 @@ export const PrismaEditor = () => {
     setTimeout(() => {
       editor.setValue(editor.getValue());
       editor.layout();
-    }, 100);
+    }, 0);
   };
-
-  useEffect(() => {
-    if (monaco && editorRef.current) {
-      const model = editorRef.current.getModel();
-      model?.setValue(model.getValue());
-    }
-  }, [monaco]);
 
   useEffect(() => {
     if (monaco) {
       monaco.languages.register({ id: "prisma" });
       monaco.languages.setLanguageConfiguration("prisma", config);
       monaco.languages.setMonarchTokensProvider("prisma", language);
+
+      if (editorRef.current) {
+        const model = editorRef.current.getModel();
+        model?.setValue(model.getValue());
+      }
     }
   }, [monaco]);
 

@@ -1,10 +1,13 @@
-import type { Node } from "@xyflow/react";
+import { PrismaNodeDiagram } from "@/components/nodes/PrismaNode";
+import type { BuiltInNode, EdgeTypes, Node } from "@xyflow/react";
+
+import type { NodeTypes } from "@xyflow/react";
 
 export type PositionLoggerNode = Node<{ label: string }, "position-logger">;
-export type PrismaNode = Node<
-  Record<keyof Data, Data[keyof Data]>,
-  "prisma-table"
->;
+
+export type PrismaNode = Node<Data>;
+
+export type AppNode = BuiltInNode | PrismaNode;
 
 export interface Diagram {
   data: PrismaNode[];
@@ -23,10 +26,10 @@ export interface Position {
   y: number;
 }
 
-export interface Data {
+export type Data = {
   modelName: string;
   modelContent: ModelContent[];
-}
+};
 
 export interface ModelContent {
   id: string;
@@ -39,3 +42,8 @@ export interface Relation {
   source: string;
   target: string;
 }
+
+export const nodeTypes = {
+  "prisma-table": PrismaNodeDiagram,
+} satisfies NodeTypes;
+export const edgeTypes = {} satisfies EdgeTypes;
