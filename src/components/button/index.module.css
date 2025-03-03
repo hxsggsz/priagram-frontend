@@ -1,0 +1,13 @@
+@import url("../../styles/variables.css");
+
+.button {
+  position: relative;
+  padding: 1rem 1.2rem;
+  background: var(--main-background);
+  border: 1px solid var(--foreground);
+  border-radius: var(--rounded-xl);
+  color: var(--text);
+  font-size: 1.8rem;
+  z-index: 9999;
+  cursor: pointer;
+}
