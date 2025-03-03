@@ -22,6 +22,7 @@ import "@/styles/variables.css";
 import { Button } from "./components/button";
 import { useTheme } from "./hooks/useTheme";
 import { Sun, Moon } from "@phosphor-icons/react";
+import { DownloadButton } from "./components/download-button";
 
 export default function App() {
   const { diagram } = useDiagramStore();
@@ -83,7 +84,7 @@ export default function App() {
           fitView
         >
           <FlowPanel className={css.menuWrapper} position="top-right">
-            <Button>Download Diagram</Button>
+            <DownloadButton />
 
             <Button onClick={() => toggleTheme()}>
               {theme === "light" ? (
