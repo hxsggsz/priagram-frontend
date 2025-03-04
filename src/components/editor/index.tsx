@@ -7,6 +7,7 @@ import { useDiagramStore } from "@/stores/useDiagramStore";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { editor } from "monaco-editor";
 import { useTheme } from "@/hooks/useTheme";
+import { DEFAULT_TEXT } from "./constants";
 
 export const PrismaEditor = () => {
   const { theme } = useTheme();
@@ -58,7 +59,7 @@ export const PrismaEditor = () => {
         loading="Loading..."
         path="prisma"
         defaultLanguage="prisma"
-        defaultValue="// Your code here!!!"
+        defaultValue={DEFAULT_TEXT}
         value={editorValue}
         onChange={handleChange}
         onMount={loadsEditorHighlightOnMount}
