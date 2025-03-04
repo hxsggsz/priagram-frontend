@@ -1,3 +1,5 @@
+@import url("./variables.css");
+
 .wrapper {
   display: grid;
   overflow: hidden;
@@ -6,10 +8,48 @@
   width: 100vw;
   border: none;
   height: 100vh;
-}
 
-.menuWrapper {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  .panelGroup {
+    position: relative;
+    display: flex;
+    width: 1px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--sub-text);
+    outline: none;
+  }
+
+  .panelGroup::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 0.25rem;
+    transform: translateX(-50%);
+  }
+
+  .panelGroup:focus-visible {
+    box-shadow: 0 0 0 1px var(--ring-color);
+    outline-offset: 1px;
+  }
+
+  .resizeHandler {
+    z-index: 40;
+    height: 1.8rem;
+    width: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--rounded-sm);
+    background: var(--sub-text);
+    color: var(--main-backgroud);
+    padding: 0.2rem;
+  }
+
+  .menuWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
 }

@@ -28,7 +28,8 @@ export function useNodes() {
       const existingNode = nodes.find((node) => node.id === diagramNode.id);
 
       if (existingNode) {
-        return existingNode;
+        // keeps existing node object but uses the new data from diagram node
+        return { ...existingNode, data: diagramNode.data };
       }
 
       return {
@@ -41,7 +42,8 @@ export function useNodes() {
     });
 
     setNodes(newNodes);
-  }, [diagram, diagram?.data, nodes, setNodes]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [diagram, diagram?.data]);
 
   useEffect(() => {
     if (!diagram || !diagram.relations) return;

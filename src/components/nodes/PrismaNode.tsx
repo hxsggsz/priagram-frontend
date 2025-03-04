@@ -39,7 +39,7 @@ export function PrismaNodeDiagram({
   const showSourceHandle = sourceConnections.length > 0;
 
   const renderNodeColumns = () =>
-    data.modelContent.map((mc) => (
+    data?.modelContent?.map((mc) => (
       <li key={mc.id} className={css.listItem}>
         <p>{mc.name}</p>
         <p>{mc.type}</p>
@@ -52,7 +52,7 @@ export function PrismaNodeDiagram({
         {data.modelName && <h1>{data.modelName}</h1>}
       </header>
 
-      <ul className={css.listWrapper}>{renderNodeColumns()}</ul>
+      <ul className={css.listWrapper}>{data && renderNodeColumns()}</ul>
 
       {showTargetHandle && (
         <Handle

@@ -10,7 +10,7 @@ import { nodeTypes } from "./types/diagram";
 import "@/styles/variables.css";
 import { Button } from "./components/button";
 import { useTheme } from "./hooks/useTheme";
-import { Sun, Moon } from "@phosphor-icons/react";
+import { Sun, Moon, SplitHorizontal } from "@phosphor-icons/react";
 import { DownloadButton } from "./components/download-button";
 import { useNodes } from "./hooks/useNodes";
 
@@ -24,7 +24,12 @@ export default function App() {
       <Panel collapsible minSize={25} order={1}>
         <PrismaEditor />
       </Panel>
-      <PanelResizeHandle style={{ width: "1px", background: "#1e1e1e" }} />
+
+      <PanelResizeHandle className={css.panelGroup}>
+        <div className={css.resizeHandler}>
+          <SplitHorizontal size={30} weight="bold" />
+        </div>
+      </PanelResizeHandle>
 
       <Panel collapsible minSize={25} order={2}>
         <ReactFlow
