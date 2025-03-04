@@ -21,14 +21,14 @@ export const PrismaEditor = () => {
 
   const handleChange = useDebouncedCallback(
     async (value: string | undefined) => {
+      setEditorValue(value ?? "");
       if (!value) return;
-      setEditorValue(value);
       fetch(value);
     },
     500
   );
 
-  const handleEditorDidMount: OnMount = (editor) => {
+  const loadsEditorHighlightOnMount: OnMount = (editor) => {
     editorRef.current = editor;
     setTimeout(() => {
       editor.setValue(editor.getValue());
@@ -58,9 +58,10 @@ export const PrismaEditor = () => {
         loading="Loading..."
         path="prisma"
         defaultLanguage="prisma"
+        defaultValue="// Your code here!!!"
         value={editorValue}
         onChange={handleChange}
-        onMount={handleEditorDidMount}
+        onMount={loadsEditorHighlightOnMount}
         options={{
           minimap: { enabled: false },
           smoothScrolling: true,
