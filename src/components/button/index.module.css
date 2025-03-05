@@ -10,5 +10,6 @@
   color: var(--text);
   font-size: 1.8rem;
   z-index: 9999;
+  display: flex;
   cursor: pointer;
 }

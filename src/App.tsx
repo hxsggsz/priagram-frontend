@@ -13,6 +13,7 @@ import { useTheme } from "./hooks/useTheme";
 import { Sun, Moon, SplitHorizontal } from "@phosphor-icons/react";
 import { DownloadButton } from "./components/download-button";
 import { useNodes } from "./hooks/useNodes";
+import { SocialMediaButtons } from "./components/social-media-buttons";
 
 export default function App() {
   const { theme, toggleTheme } = useTheme();
@@ -53,6 +54,9 @@ export default function App() {
               )}
             </Button>
           </FlowPanel>
+
+          <SocialMediaButtons />
+
           <Background />
         </ReactFlow>
       </Panel>
